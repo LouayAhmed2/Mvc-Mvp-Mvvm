@@ -1,4 +1,4 @@
-package com.example.moviesapp;
+package com.example.moviesapp.Ui;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,10 +7,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.moviesapp.R;
+
+public class MainActivity extends AppCompatActivity implements MovieView {
 
     protected Button MovieBtn;
     protected TextView textView;
+    MoviePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +23,12 @@ public class MainActivity extends AppCompatActivity {
         MovieBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textView.setText(getMoviefromDatabase().name);
+
+                presenter.getMovieName();
             }
         });
+
+        presenter =new MoviePresenter(this);
 
     }
 
@@ -31,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.textView);
     }
 
-    public  MovieViewModel getMoviefromDatabase(){
-        return new MovieViewModel("X-men","14/9","Action",1);
+
+    @Override
+    public void OnGetMovieName(String name) {
+        textView.setText(name);
+
     }
 }

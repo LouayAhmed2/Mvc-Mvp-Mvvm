@@ -1,4 +1,4 @@
-package com.example.moviesapp;
+package com.example.moviesapp.PoJo;
 public    class MovieViewModel   {
     String name,date,description;
     int id;
