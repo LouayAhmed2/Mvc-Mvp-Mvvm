@@ -1,9 +1,9 @@
 package com.example.moviesapp.PoJo;
-public    class MovieViewModel   {
+public    class MovieModel {
     String name,date,description;
     int id;
 
-    public MovieViewModel(String name, String date, String description, int id) {
+    public MovieModel(String name, String date, String description, int id) {
         this.name = name;
         this.date = date;
         this.description = description;

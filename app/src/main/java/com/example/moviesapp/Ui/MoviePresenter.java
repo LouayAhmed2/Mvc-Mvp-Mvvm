@@ -1,6 +1,6 @@
 package com.example.moviesapp.Ui;
 
-import com.example.moviesapp.PoJo.MovieViewModel;
+import com.example.moviesapp.PoJo.MovieModel;
 
 public    class MoviePresenter   {
     MovieView View ;
@@ -8,11 +8,8 @@ public    class MoviePresenter   {
     public MoviePresenter(MovieView view) {
         View = view;
     }
-    public MovieViewModel getMoviefromDatabase(){
-        return new MovieViewModel("X-men","14/9","Action",1);
-    }
+
 
     public void getMovieName(){
-        View.OnGetMovieName(getMoviefromDatabase().getName());
     }
 }

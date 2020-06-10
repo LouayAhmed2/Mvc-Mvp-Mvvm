@@ -6,14 +6,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.moviesapp.R;
 
-public class MainActivity extends AppCompatActivity implements MovieView {
+public class MainActivity extends AppCompatActivity   {
 
     protected Button MovieBtn;
     protected TextView textView;
-    MoviePresenter presenter;
+    MovieViewModel movieViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +26,18 @@ public class MainActivity extends AppCompatActivity implements MovieView {
         MovieBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+ movieViewModel.getMovieName();
+            }
+        });
+        movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
+        movieViewModel.MovieNameMutableLiveData.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                textView.setText(s);
 
-                presenter.getMovieName();
             }
         });
 
-        presenter =new MoviePresenter(this);
 
     }
 
@@ -38,9 +47,5 @@ public class MainActivity extends AppCompatActivity implements MovieView {
     }
 
 
-    @Override
-    public void OnGetMovieName(String name) {
-        textView.setText(name);
 
-    }
 }
